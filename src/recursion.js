@@ -70,6 +70,7 @@ var sumBelow = function(n) {
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
   var output = [];
+
   if (x === y || x + 1 === y || x - 1 === y) {
     return output;
   } else if (x + 1 < y) {
@@ -105,6 +106,7 @@ var powerOfTwo = function(n) {
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
   var reversedString = '';
+
   if (reversedString.length === string.length) {
     return reversedString;
   } else {
@@ -114,7 +116,18 @@ var reverse = function(string) {
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+  string = string.toLowerCase();
+
+  if (string.length === 0 || string.length === 1) {
+    return true;
+  }
+  if (string.charAt(0) !== string.charAt(string.length - 1)) {
+    return false;
+  } else {
+    return palindrome(string.substring(1, string.length - 1));
+  }
 };
+
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
