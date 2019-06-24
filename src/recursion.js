@@ -74,11 +74,9 @@ var range = function(x, y) {
   if (x === y || x + 1 === y || x - 1 === y) {
     return output;
   } else if (x + 1 < y) {
-    output.push(x + 1);
-    return output.concat(range(x + 1, y));
+    return [x + 1].concat(range(x + 1, y));
   } else {
-    output.push(x - 1);
-    return output.concat(range(x - 1, y));
+    return [x - 1].concat(range(x - 1, y));
   }
 };
 
@@ -198,7 +196,7 @@ var gcd = function(x, y) {
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
   if (str1 === '' && str2 === '') {
-    return true
+    return true;
   } else if (str1.charAt(0) !== str2.charAt(0)) {
     return false;
   } else {
@@ -210,8 +208,9 @@ var compareStr = function(str1, str2) {
 // occupies an index of the array.
 var createArray = function(str) {
   var arr = [];
+
   if (str.length === 0) {
-    return [];
+    return arr;
   } else if (str.length === 1) {
     return [str.charAt(0)];
   } else {
@@ -221,12 +220,26 @@ var createArray = function(str) {
 
 // 17. Reverse the order of an array
 var reverseArr = function(array) {
+  var reversedArray = [];
+
+  if (reversedArray.length === array.length) {
+    return reversedArray;
+  } else {
+    return [array[array.length - 1]].concat(reverseArr(array.slice(0, array.length - 1)));
+  }
 };
 
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
 var buildList = function(value, length) {
+  var list = [];
+
+  if (length === 0) {
+    return list;
+  } else {
+    return [value].concat(buildList(value, length - 1));
+  }
 };
 
 // 19. Implement FizzBuzz. Given integer n, return an array of the string representations of 1 to n.
